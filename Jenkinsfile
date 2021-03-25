@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh "mvn compile"
+        bat "mvn compile"
       }
     }  
     stage('Test') {
       steps {
-        sh "mvn test"
+        bat "mvn test"
       }
      post {
       always {
@@ -18,7 +18,7 @@ pipeline {
   }
   stage('newman') {
      steps {
-       sh 'newman run Restful_Booker_Ruiling.postman_collection.json --environment Restful_Booker_Ruiling.postman_environment --reporters junit'
+       bat 'newman run Restful_Booker_Ruiling.postman_collection.json --environment Restful_Booker_Ruiling.postman_environment --reporters junit'
      }
      post {
         always {
@@ -28,7 +28,7 @@ pipeline {
   }
   stage('Robot Framework System tests with Selenium') {
      steps {
-          sh 'robot --variable BROWSER:headlesschrome -d Results  Tests'
+          bat 'robot --variable BROWSER:headlesschrome -d Results  Tests'
           }
           post {
              always {
