@@ -57,6 +57,11 @@ pipeline {
                 sh '/Users/yunc/apache-jmeter-5.4.1/bin/jmeter.sh -n -t FirstJMeterTest.jmx -l result.jtl'
             }
      }
+     post {
+             always {
+               junit '**/*xml'
+             }
+     }
 
   }
  }
