@@ -30,7 +30,7 @@ pipeline {
      steps {
           sh 'robot --variable BROWSER:headlesschrome -d Robotfiles/Results  Robotfiles/Tests'
           }
-          post {
+     post {
              always {
                  script {
                       step(
@@ -48,7 +48,16 @@ pipeline {
                       )
                  }
              }
-          }
+     }
+  }
+
+  stage('Run JMeter Test') {
+     steps {
+            dir("JMeter") {
+                sh '/Users/yunc/apache-jmeter-5.4.1/bin/jmeter.sh -n -t FirstJMeterTest.jmx -l result.jtl'
+            }
+     }
+
   }
  }
 }
