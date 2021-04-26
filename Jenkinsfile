@@ -51,18 +51,5 @@ pipeline {
      }
   }
 
-  stage('Run JMeter Test') {
-     steps {
-            dir("JMeter") {
-                sh '/Users/yunc/apache-jmeter-5.4.1/bin/jmeter.sh -n -t JMter/test.jmx -l JMeter/result.jtl'
-            }
-     }
-     post {
-             always {
-               junit '**/*xml'
-             }
-     }
-
-  }
  }
 }
